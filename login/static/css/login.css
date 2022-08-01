@@ -38,3 +38,17 @@ button:hover {
     padding: 25px;
     background-color: red;
 }
+
+/* Sectioning */
+
+.left{
+   width: 33%;
+   float: left;
+}
+.right{
+   width: 33%;
+   float: right;
+}
+.clear-fix{
+  clear: both;
+}
