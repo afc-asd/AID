@@ -3,16 +3,19 @@
 
 <head>
     {% load static %}
-</head>>
+    <style>
+        body {
+          background-image: url("{% static 'f1.jpg' %}");
+        }
+    </style>
+</head>
 
 <body>
 
-<h1>Hello World!</h1>
-<p>Welcome to my first Django project!</p>
-<div>
-<img src = "{% static 'f1.jpg' %}" height="200" width="200">
-<br>
-</div>>
+{#<h1>Hello World!</h1>#}
+{#<p>Welcome to my first Django project!</p>#}
+
+</div>
 
 </body>
 </html>
