@@ -43,7 +43,7 @@ def login_user(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect('home:home')
+            return redirect('home')
         else:
             messages.info(request, 'Invalid Username or Password')
             return redirect('login_user')
@@ -53,4 +53,4 @@ def login_user(request):
 
 def logout_user(request):
     auth.logout(request)
-    return redirect('home:home')
+    return redirect('home')
