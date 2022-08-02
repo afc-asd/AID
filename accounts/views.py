@@ -24,7 +24,7 @@ def register(request):
                                                 email=email, first_name=first_name, last_name=last_name)
                 user.save()
 
-                return redirect('login_user')
+                return redirect('login')
 
         else:
             messages.info(request, 'Both passwords are not matching')
@@ -46,7 +46,7 @@ def login(request):
             return redirect('home:home')
         else:
             messages.info(request, 'Invalid Username or Password')
-            return redirect('login_user')
+            return redirect('login')
 
     else:
         return render(request, 'accounts/login.html')
