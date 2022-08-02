@@ -6,4 +6,5 @@ app_name = 'home'
 urlpatterns = [
     path('', views.home, name='home'),
     path('secret_level', views.test, name='test'),
+    path('tableau', views.tab, name='tab')
 ]

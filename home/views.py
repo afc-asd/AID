@@ -7,3 +7,6 @@ def home(request):
 
 def test(request):
     return render(request, "home/test.html")
+
+def tab(request):
+    return render(request, "home/tableau_test.html")
