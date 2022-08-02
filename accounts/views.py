@@ -34,7 +34,7 @@ def register(request):
     else:
         return render(request, 'accounts/registration.html')
 
-def login_user(request):
+def login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -51,6 +51,6 @@ def login_user(request):
     else:
         return render(request, 'accounts/login.html')
 
-def logout_user(request):
+def logout(request):
     auth.logout(request)
     return redirect('home:home')
