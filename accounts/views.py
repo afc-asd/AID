@@ -15,20 +15,20 @@ def register(request):
         if password == confirm_password:
             if User.objects.filter(username=username).exists():
                 messages.info(request, 'Username is already taken')
-                return redirect(register)
+                return redirect('accounts:register')
             elif User.objects.filter(email=email).exists():
                 messages.info(request, 'Email is already taken')
-                return redirect(register)
+                return redirect('accounts:register')
             else:
                 user = User.objects.create_user(username=username, password=password,
                                                 email=email, first_name=first_name, last_name=last_name)
                 user.save()
 
-                return redirect('login_user')
+                return redirect('accounts:login_user')
 
         else:
             messages.info(request, 'Both passwords are not matching')
-            return redirect('register')
+            return redirect('accounts:register')
 
 
     else:
@@ -43,14 +43,14 @@ def login_user(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect('home')
+            return redirect('home:home')
         else:
             messages.info(request, 'Invalid Username or Password')
-            return redirect('login_user')
+            return redirect('accounts:login_user')
 
     else:
         return render(request, 'accounts/login.html')
 
 def logout_user(request):
     auth.logout(request)
-    return redirect('home')
+    return redirect('home:home')
