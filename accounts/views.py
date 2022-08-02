@@ -24,17 +24,17 @@ def register(request):
                                                 email=email, first_name=first_name, last_name=last_name)
                 user.save()
 
-                return redirect('login')
+                return redirect('login_user')
 
         else:
             messages.info(request, 'Both passwords are not matching')
-            return redirect(register)
+            return redirect('register')
 
 
     else:
         return render(request, 'accounts/registration.html')
 
-def login(request):
+def login_user(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -46,11 +46,11 @@ def login(request):
             return redirect('home:home')
         else:
             messages.info(request, 'Invalid Username or Password')
-            return redirect('login')
+            return redirect('login_user')
 
     else:
         return render(request, 'accounts/login.html')
 
-def logout(request):
+def logout_user(request):
     auth.logout(request)
     return redirect('home:home')
