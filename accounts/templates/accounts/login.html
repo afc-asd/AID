@@ -1,57 +1,120 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% load static %}
 
-    <!-- Bootstrap CSS -->
+<head>
+    <title>AFC AID</title>
+    <meta property="og:title" content="AFC AID" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6 {  margin: 0;  padding: 0;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+
+      }
+    </style>
+    <style>
+        .login-container3 {
+            background-image: url("{% static 'accounts/img/afc_bg.jpg' %}");
+        }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      data-tag="font"
+    />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <title>LOGIN</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/style.css' %}"/>
 </head>
 
 <body>
-    <div class="mx-auto" style="width: 500px" ;>
-        <form action="login_user" method="post" class="form-horizontal">
-            {% csrf_token%}
-            <div class="col-xs-8 col-xs-offset-4">
-                <h2 style="text-align:center;">LOGIN</h2>
+
+    <div>
+      <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}"/>
+
+      <div class="login-container">
+        <div class="login-container1">
+          <div class="app-component-container app-component-root-class-name">
+            <div class="app-component-container1"></div>
+            <div class="app-component-container2">
+              <img
+                alt="image"
+                src="{% static 'accounts/img/aid_logo.png' %}"
+                class="app-component-image"
+              />
+            </div>
+            <div class="app-component-container3">
+              <span class="app-component-text"><span>Welcome Back</span></span>
             </div>
 
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username">
+              <form action="login_user" method="post">
+                {% csrf_token%}
+                  <div class="app-component-container4">
+                      <label class="app-component-text1"><span>Email</span></label>
+                      <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter your email"
+                        class="app-component-textinput input"
+                      />
+                  </div>
+                  <div class="app-component-container5">
+                      <label class="app-component-text2"><span>Password</span></label>
+                      <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        class="app-component-textinput1 input"
+                      />
+                  </div>
+                  <div type="submit" class="app-component-container6">
+                      <button class="app-component-button button">
+                        <span>Log In</span>
+                      </button>
+                  </div>
+                  <br><br>
+                  <div class="form-group">
+                      {% for message in messages %}
+                          <div class="alert alert-danger" role="alert">
+                              {{message}}
+                          </div>
+                      {% endfor %}
+                  </div>
+              </form>
+          </div>
+        </div>
+        <div class="login-container2">
+          <div class="login-container3">
+            <div class="login-container4">
+              <img
+                alt="image"
+                src="{% static 'accounts/img/afc_logo.png' %}"
+                class="login-image"
+              />
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
-            </div>
-            <button type="submit" class="btn btn-primary">LOGIN</button>
-            <br />
-            <div class="form-group">
-                {% for message in messages %}
-                <div class="alert alert-danger" role="alert">
-                    {{message}}
-                </div>
-                {% endfor %}
-            </div>
-        </form>
-
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-    </div>>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 
 </html>
