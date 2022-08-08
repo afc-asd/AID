@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'home/css/dash.css' %}">
+</head>
+
+<body>
+
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">☰</a>
+      <a href="{% url 'home:home' %}">
+          <svg viewBox="0 0 1024 1024" class="nav-icon">
+            <path
+                d="M1024 590.444l-512-397.426-512 397.428v-162.038l512-397.426 512 397.428zM896 576v384h-256v-256h-256v256h-256v-384l384-288z"
+            ></path>
+          </svg>
+      </a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div id="main">
+      <button class="openbtn" onclick="openNav()"> Open Sidebar</button>
+      <h2>Collapsed Sidebar</h2>
+      <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p><br>
+        <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p><br>
+        <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p><br>
+        <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p><br>
+        <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p><br>
+        <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p><br>
+        <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p><br>
+        <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p><br>
+        <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p><br>
+        <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p><br>
+        <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p><br>
+        <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p><br>
+        <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p><br>
+
+    </div>
+
+    <script>
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "5vw";
+      document.getElementById("main").style.marginLeft= "5vw";
+    }
+    </script>
+
+</body>
+
+</html>
