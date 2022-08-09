@@ -9,7 +9,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: royalblue;
+  background-color: ghostwhite;
   overflow-x: hidden;
   padding-top: 60px;
   transition: 0.5s;
@@ -20,17 +20,17 @@ body {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: white;
+  color: darkblue;
   display: block;
 }
 
 .sidebar a:hover,
 .sidebar a:hover .material-symbols-sharp{
-  color: rgba(255, 215, 0, 1);
+  color: rgba(0, 191, 255, 1);
 }
 
 .sidebar a.active {
-  background-color: darkblue;
+  background-color: palegoldenrod;
 }
 
 main .sidebar{
@@ -42,7 +42,7 @@ main .sidebar{
 }
 
 .material-symbols-sharp {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 139, 1);
   vertical-align: middle;
   margin-right: 30px;
   font-variation-settings:
