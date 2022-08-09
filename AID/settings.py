@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
-    'login',
     'accounts'
 ]
 
@@ -140,7 +139,6 @@ STATIC_ROOT = Path.joinpath(BASE_DIR, 'staticfiles')
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [Path.joinpath(BASE_DIR, "static"),
                     Path.joinpath(BASE_DIR, "home/static"),
-                    Path.joinpath(BASE_DIR, "login/static"),
                     Path.joinpath(BASE_DIR, "accounts/static")]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

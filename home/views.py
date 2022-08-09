@@ -5,8 +5,5 @@ from django.http import HttpResponse
 def home(request):
     return render(request, "home/home.html")
 
-def test(request):
-    return render(request, "home/test.html")
-
-def tab(request):
-    return render(request, "home/tableau_test.html")
+def dashboard(request):
+    return render(request, "home/dashboard.html")
