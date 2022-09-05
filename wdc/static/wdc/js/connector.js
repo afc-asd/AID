@@ -407,6 +407,38 @@ function titleCase(str) {
             }
         ];
 
+        let teams_cols = [
+            {
+                id: "match_id",
+                alias: "Match ID",
+                dataType: tableau.dataTypeEnum.int
+            }, {
+                id: "side",
+                alias: "Team Side",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "team_id",
+                alias: "Team ID",
+                dataType: tableau.dataTypeEnum.int
+            }, {
+                id: "name",
+                alias: "Team Name",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "shortname",
+                alias: "Team Shortname",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "country",
+                alias: "Team Country",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "region",
+                alias: "Team Region",
+                dataType: tableau.dataTypeEnum.string
+            }
+        ];
+
         let fixturesTable = {
             id: "fixtures",
             alias: "Fixtures Data",
@@ -443,7 +475,13 @@ function titleCase(str) {
             columns: refs_cols
         }
 
-        schemaCallback([fixturesTable, venuesTable, goalsTable, subsTable, foulsTable, refsTable]);
+        let teamsTable = {
+            id: "teams",
+            alias: "Teams Data",
+            columns: teams_cols
+        }
+
+        schemaCallback([fixturesTable, venuesTable, goalsTable, subsTable, foulsTable, refsTable, teamsTable]);
 
     };
 
@@ -453,7 +491,7 @@ function titleCase(str) {
             async: false
         });
 
-        const APIURL = 'http://localhost:8889/atlas.afc-link.com/api/';
+        const APIURL = 'http://atlas.afc-link.com/api/';
         const APIKEY = 'PRlcO0rlwRItriglQine0apitRePe0REfRaDrE9rexIpUGi7raviZiyahuBR';
         const DB_TYPE = '1';
         const SERVICE = ['venues', 'standings-table', 'fixtures', 'spectators'];
@@ -1463,6 +1501,121 @@ function titleCase(str) {
                             }
 
                         });
+
+                    }
+
+                });
+
+            }
+
+            chunkData(table,tableData);
+            doneCallback();
+
+        } else if (table.tableInfo.id === "teams") {
+
+            //let teams_done = [];
+            let tableData = [];
+
+            for (let t = 0; t < TOURNAMENTS.length; t++) {
+
+                let TOURNAMENT = TOURNAMENTS[t];
+
+                let apiCall_fixtures =
+                    APIURL + SERVICE[2] +
+                    '?key=' + APIKEY +
+                    '&service=' + SERVICE[2] +
+                    '&type_id=' + DB_TYPE +
+                    '&event_id=' + TOURNAMENT;
+
+                $.ajax({
+                    url: apiCall_fixtures,
+                    success: function (fixtures) {
+
+                        tableau.log("Fixtures API call being made...");
+
+                        let fixture = fixtures.ITEMS;
+                        // let teams_id_raw = [];
+                        // let teams_id = [];
+
+                        for (let i = 0, len = fixture.length; i < len; i++) {
+                            tableau.reportProgress("Getting tournament: " + TOURNAMENT + ", match: " + i);
+
+                            let match_id = fixture[i].ID;
+
+                            tableData.push({
+                                "match_id": match_id,
+                                "side": "A",
+                                "team_id": fixture[i].TEAMS.TEAM_A.ID,
+                                "shortname": fixture[i].TEAMS.TEAM_A.SHORTNAME,
+                                "name": fixture[i].TEAMS.TEAM_A.NAME,
+                                "country": fixture[i].TEAMS.TEAM_A.COUNTRY,
+                                "region": fixture[i].TEAMS.TEAM_A.REGION,
+                            })
+
+                            tableData.push({
+                                "match_id": match_id,
+                                "side": "B",
+                                "team_id": fixture[i].TEAMS.TEAM_B.ID,
+                                "shortname": fixture[i].TEAMS.TEAM_B.SHORTNAME,
+                                "name": fixture[i].TEAMS.TEAM_B.NAME,
+                                "country": fixture[i].TEAMS.TEAM_B.COUNTRY,
+                                "region": fixture[i].TEAMS.TEAM_B.REGION,
+                            })
+
+                            // let team_id = fixture[i].TEAMS.TEAM_A.ID;
+                            // teams_id_raw.push(team_id);
+                            // team_id = fixture[i].TEAMS.TEAM_B.ID;
+                            // teams_id_raw.push(team_id);
+                        }
+
+                        // teams_id_raw.forEach((te) => {
+                        //     if (!teams_id.includes(te)) {
+                        //         teams_id.push(te);
+                        //     }
+                        // });
+
+                        // for (let i = 0, len = fixture.length; i < len; i++) {
+                        //     tableau.reportProgress("Getting tournament: " + TOURNAMENT + ", match: " + i);
+                        //
+                        //     for (let j = 0; j < teams_id.length; j++) {
+                        //
+                        //         if (teams_id[j] === fixture[i].TEAMS.TEAM_A.ID) {
+                        //
+                        //             if (!teams_done.includes(teams_id[j])) {
+                        //
+                        //                 tableData.push({
+                        //                     "id": teams_id[j],
+                        //                     "shortname": fixture[i].TEAMS.TEAM_A.SHORTNAME,
+                        //                     "name": fixture[i].TEAMS.TEAM_A.NAME,
+                        //                     "country": fixture[i].TEAMS.TEAM_A.COUNTRY,
+                        //                     "region": fixture[i].TEAMS.TEAM_A.REGION
+                        //                 });
+                        //
+                        //                 teams_done.push(teams_id[j]);
+                        //
+                        //             }
+                        //
+                        //         } else if (teams_id[j] === fixture[i].TEAMS.TEAM_B.ID) {
+                        //
+                        //             if (!teams_done.includes(teams_id[j])) {
+                        //
+                        //                 tableData.push({
+                        //                     "id": teams_id[j],
+                        //                     "shortname": fixture[i].TEAMS.TEAM_B.SHORTNAME,
+                        //                     "name": fixture[i].TEAMS.TEAM_B.NAME,
+                        //                     "country": fixture[i].TEAMS.TEAM_B.COUNTRY,
+                        //                     "region": fixture[i].TEAMS.TEAM_B.REGION
+                        //                 });
+                        //
+                        //                 teams_done.push(teams_id[j]);
+                        //
+                        //             }
+                        //
+                        //         }
+                        //
+                        //     }
+                        //
+                        // }
 
                     }
 
