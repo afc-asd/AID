@@ -491,7 +491,7 @@ function titleCase(str) {
             async: false
         });
 
-        const APIURL = 'http://atlas.afc-link.com/api/';
+        const APIURL = 'https://atlas.afc-link.com/api/';
         const APIKEY = 'PRlcO0rlwRItriglQine0apitRePe0REfRaDrE9rexIpUGi7raviZiyahuBR';
         const DB_TYPE = '1';
         const SERVICE = ['venues', 'standings-table', 'fixtures', 'spectators'];
