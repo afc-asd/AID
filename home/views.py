@@ -12,4 +12,4 @@ def dashboard(request):
         return render(request, "home/dashboard.html")
     else:
         messages.info(request, 'Please log in to view the dashboard.')
-        return redirect("accounts:login_user")
+        return redirect("home:home")
