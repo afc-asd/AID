@@ -11,5 +11,5 @@ def dashboard(request):
     if request.user.is_authenticated:
         return render(request, "home/dashboard.html")
     else:
-        messages.info(request, 'Please log in to view the dashboard.')
-        return redirect('home:home')
+        message = 'Please log in to view the dashboard.'
+        return redirect('home:home', message)
