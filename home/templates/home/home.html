@@ -22,9 +22,9 @@
 
 <body>
 
-    {% if message %}
+    {% if request.info %}
         <script>
-            alert('{{ message }}');
+            alert('{{ request.info }}');
         </script>
     {% endif %}
 
