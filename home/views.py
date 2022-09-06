@@ -7,9 +7,12 @@ from django.shortcuts import redirect
 def home(request):
     return render(request, "home/home.html")
 
+def home_redirect(request):
+    info = 'Please log in to view the dashboard.'
+    return render(request, 'home/home.html', {'info': info})
+
 def dashboard(request):
     if request.user.is_authenticated:
         return render(request, "home/dashboard.html")
     else:
-        info = 'Please log in to view the dashboard.'
-        return redirect('home:home', {'info':info})
+        return redirect("home:home_redirect")

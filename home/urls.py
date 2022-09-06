@@ -5,5 +5,6 @@ app_name = 'home'
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('dashboard', views.dashboard, name='dashboard')
+    path('dashboard', views.dashboard, name='dashboard'),
+    path('auth', views.home_redirect, name='home_redirect')
 ]
